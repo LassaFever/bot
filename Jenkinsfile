@@ -6,7 +6,7 @@ pipeline {
       // 不允许同时执行流水线, 防止同时访问共享资源等
       disableConcurrentBuilds()
       // 显示具体的构建流程时间戳
-      timestamps()
+      // timestamps()
   }
 
   environment {
