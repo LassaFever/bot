@@ -14,7 +14,11 @@ spec:
     node(POD_LABEL) {
         git branch: 'main', changelog: false, poll: false, url: 'https://github.com/dokilife/bot.git'
         container('docker') {
-            sh 'docker version && docker build -t harbor.doki.life/bot/bot:latest .'
+            //sh 'docker version && docker build -t harbor.doki.life/bot/bot:latest .'
+            withDockerRegistry(credentialsId: 'harbor-auth', url: 'https://harbor.doki.life') {
+                def image = docker.build("harbor.doki.life/bot/bot:latest")
+                image.push()
+            }
         }
     }
 }
